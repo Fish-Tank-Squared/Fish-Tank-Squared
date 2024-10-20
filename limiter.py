@@ -4,6 +4,8 @@ def iterative_rate_limit(current_voltage, limit, target):
     return new_voltage
 
 if __name__ == "__main__":
-    starting_voltage = 0
-    
-    print("This works!")
+    voltage = 0
+    target = 12
+    while voltage != target:
+        voltage = iterative_rate_limit(voltage, 0.5, target)
+        print(voltage)
