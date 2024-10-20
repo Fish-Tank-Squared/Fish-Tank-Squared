@@ -44,7 +44,7 @@ class RectangleBoxCircleDeadZonePosToSpeed(PosToSpeedInterface):
         mag = math.sqrt((math.sin(theta)-math.cos(theta))**2 + (math.sin(theta)+math.cos(theta))**2)
         # get percent of maximum power
         per = (math.sqrt((x-deadZoneEdge[0])**2 + (y-deadZoneEdge[1])**2))/(math.sqrt((tankEdge[0]-deadZoneEdge[0])**2 + (tankEdge[1]-deadZoneEdge[1])**2))
-        return ((math.sin(theta)-math.cos(theta))*per/mag,(math.sin(theta)+math.cos(theta))*per/mag)
+        return ((math.sin(theta)*self.maxSpeed-math.cos(theta)*self.maxTurnRate)*per/mag,(math.sin(theta)*self.maxSpeed+math.cos(theta)*self.maxTurnRate)*per/mag)
     #args[0] = tankCornerX
     #args[1] = tankCornerY
     #args[2] = tankWidth
