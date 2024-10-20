@@ -36,10 +36,10 @@ class RectangleBoxCircleDeadZonePosToSpeed(PosToSpeedInterface):
         else:
             if (py < 0):
                 tankEdge[1] = self.tankCorner[1] if self.tankCorner[1] >= self.tankSize[1] else self.tankCorner[1] + self.tankSize[1]
-                tankEdge[0] = self.deadZoneCenter[0] - (shifty/shiftx)*tankEdge[1]
+                tankEdge[0] = self.deadZoneCenter[0] - (shiftx/shifty)*tankEdge[1]
             else:
                 tankEdge[1] = self.tankCorner[1] if self.tankCorner[1] <= self.tankSize[1] else self.tankCorner[1] + self.tankSize[1]
-                tankEdge[0] = self.deadZoneCenter[0] - (shifty/shiftx)*tankEdge[1]
+                tankEdge[0] = self.deadZoneCenter[0] - (shiftx/shifty)*tankEdge[1]
         # get max vector magatude
         mag = math.sqrt((math.sin(theta)-math.cos(theta))**2 + (math.sin(theta)+math.cos(theta))**2)
         # get percent of maximum power
