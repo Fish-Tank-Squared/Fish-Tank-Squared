@@ -1,6 +1,6 @@
 import math
 class PosToSpeedInterface:
-    #returns a tuple with size of 2 with 2 floats (movement)
+    #returns a tuple with size of 2 with 2 floats (R, L)
     def getCurrentSpeed(self, x:int, y:int) -> tuple:
         pass
     #width is width of image and hight is hight of image
@@ -29,17 +29,17 @@ class RectangleBoxCircleDeadZonePosToSpeed(PosToSpeedInterface):
         if(math.fabs(px)>math.fabs(py)):
           if (px < 0):
               tankEdge[0] = self.tankCorner[0] if self.tankCorner[0] >= self.tankSize[0] else self.tankCorner[0] + self.tankSize[0]
-              tankEdge[1] = self.deadZoneCenter[1] - (shifty/shiftx)*tankEdge[0]
+              tankEdge[1] = self.deadZoneCenter[1] - (shifty/shiftx)*(self.deadZoneCenter[0] - tankEdge[0])
           else:
               tankEdge[0] = self.tankCorner[0] if self.tankCorner[0] <= self.tankSize[0] else self.tankCorner[0] + self.tankSize[0]
-              tankEdge[1] = self.deadZoneCenter[1] - (shifty/shiftx)*tankEdge[0]
+              tankEdge[1] = self.deadZoneCenter[1] - (shifty/shiftx)*(self.deadZoneCenter[0] - tankEdge[0])
         else:
             if (py < 0):
                 tankEdge[1] = self.tankCorner[1] if self.tankCorner[1] >= self.tankSize[1] else self.tankCorner[1] + self.tankSize[1]
-                tankEdge[0] = self.deadZoneCenter[0] - (shiftx/shifty)*tankEdge[1]
+                tankEdge[0] = self.deadZoneCenter[0] - (shiftx/shifty)*(self.deadZoneCenter[1] - tankEdge[1])
             else:
                 tankEdge[1] = self.tankCorner[1] if self.tankCorner[1] <= self.tankSize[1] else self.tankCorner[1] + self.tankSize[1]
-                tankEdge[0] = self.deadZoneCenter[0] - (shiftx/shifty)*tankEdge[1]
+                tankEdge[0] = self.deadZoneCenter[0] - (shiftx/shifty)*(self.deadZoneCenter[1] - tankEdge[1])
         # get max vector magatude
         mag = math.fabs(math.sin(theta)-math.cos(theta) if math.fabs((math.sin(theta)-math.cos(theta))) > math.fabs((math.sin(theta)+math.cos(theta))) else (math.sin(theta)+math.cos(theta)))
         # get percent of maximum power
