@@ -36,12 +36,12 @@ class RectangleBoxCircleDeadZonePosToSpeed(PosToSpeedInterface):
         else:
             if (py < 0):
                 tankEdge[1] = self.tankCorner[1] if self.tankCorner[1] >= self.tankSize[1] else self.tankCorner[1] + self.tankSize[1]
-                tankEdge[0] = self.deadZoneCenter[0] - (shifty/shiftx)*tankEdge[1]
+                tankEdge[0] = self.deadZoneCenter[0] - (shiftx/shifty)*tankEdge[1]
             else:
                 tankEdge[1] = self.tankCorner[1] if self.tankCorner[1] <= self.tankSize[1] else self.tankCorner[1] + self.tankSize[1]
-                tankEdge[0] = self.deadZoneCenter[0] - (shifty/shiftx)*tankEdge[1]
+                tankEdge[0] = self.deadZoneCenter[0] - (shiftx/shifty)*tankEdge[1]
         # get max vector magatude
-        mag = math.sqrt((math.sin(theta)-math.cos(theta))**2 + (math.sin(theta)+math.cos(theta))**2)
+        mag = math.fabs(math.sin(theta)-math.cos(theta) if (math.sin(theta)-math.cos(theta)) > (math.sin(theta)+math.cos(theta)) else (math.sin(theta)+math.cos(theta)))
         # get percent of maximum power
         per = (math.sqrt((x-deadZoneEdge[0])**2 + (y-deadZoneEdge[1])**2))/(math.sqrt((tankEdge[0]-deadZoneEdge[0])**2 + (tankEdge[1]-deadZoneEdge[1])**2))
         return ((math.sin(theta)*self.maxSpeed-math.cos(theta)*self.maxTurnRate)*per/mag,(math.sin(theta)*self.maxSpeed+math.cos(theta)*self.maxTurnRate)*per/mag)
@@ -63,3 +63,13 @@ class RectangleBoxCircleDeadZonePosToSpeed(PosToSpeedInterface):
         self.deadZoneCenter[0] = self.tankCorner[0] - (self.tankSize[0]/2) if self.tankCorner[0]>(self.size[0]/2) else self.tankCorner[0] + (self.tankSize[0]/2)
         self.deadZoneCenter[1] = self.tankCorner[1] - (self.tankSize[1]/2) if self.tankCorner[1]>(self.size[1]/2) else self.tankCorner[1] + (self.tankSize[1]/2)
         pass
+def test():
+    controler = RectangleBoxCircleDeadZonePosToSpeed()
+    controler.setSettings(1, 1, 500, 500, 50, 50, 400, 400, 100)
+    print(controler.getCurrentSpeed(250, 250))
+    print(controler.getCurrentSpeed(60, 250))
+    print(controler.getCurrentSpeed(440, 250))
+    print(controler.getCurrentSpeed(250, 60))
+    print(controler.getCurrentSpeed(250, 440))
+    print(controler.getCurrentSpeed(440, 440))
+test()
