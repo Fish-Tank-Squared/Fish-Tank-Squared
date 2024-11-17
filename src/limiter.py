@@ -1,6 +1,5 @@
 from math import fabs
 
-
 def iterative_rate_limit(current_voltage, limit, target):
     if target <= 0:
         new_voltage = current_voltage - limit
