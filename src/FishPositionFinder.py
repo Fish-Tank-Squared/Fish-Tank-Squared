@@ -49,7 +49,7 @@ def test():
     imgPath = "C:\\dev\\applications\\FishTankSquared\\Test\\TestFakeFishImage.png"
     fishFinder.setFishColors([[39, 127, 255]])
     fishFinder.setTankColors([[255, 255, 255]])
-    fishFinder.setThreshold(1500)
+    fishFinder.setThreshold(1500)   
     img = cv.imread(imgPath)
     assert img is not None
     print(fishFinder.getFishPostion(img, img.shape[0], img.shape[1], 525, 1100, 20, 50))
