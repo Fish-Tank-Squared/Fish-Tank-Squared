@@ -72,4 +72,4 @@ def test():
     print(controler.getCurrentSpeed(250, 60))
     print(controler.getCurrentSpeed(250, 440))
     print(controler.getCurrentSpeed(440, 440))
-test()
+#test()
