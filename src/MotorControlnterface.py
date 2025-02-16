@@ -1,5 +1,6 @@
 import gpiozero as gpio
 from gpiozero.pins.rpigpio import RPiGPIOPin as RPin
+import Math
 #pins
 VCC = 2
 GND = 6
@@ -12,25 +13,26 @@ PWMB = 12
 PWMA = 13
 STOP = -1 #set later
 
-
-VCCPin = RPin(2)
+VCCPin = RPin(VCC)
 VCCPin.function = "output"
-GNDPin = RPin(6)
-VCCPin.function = "output"
-BIN2Pin = RPin(17)
-VCCPin.function = "output"
-BIN1Pin = RPin(27)
-VCCPin.function = "output"
-AIN1Pin = RPin(23)
-VCCPin.function = "output"
-AIN2Pin = RPin(24)
-VCCPin.function = "output"
-STBYPin = RPin(25)
-VCCPin.function = "output"
-PWMBPin = RPin(12)
-VCCPin.function = "output"
-PWMAPin = RPin(13)
-VCCPin.function = "output"
+GNDPin = RPin(GND)
+GNDPin.function = "output"
+BIN2Pin = RPin(BIN2)
+BIN2Pin.function = "output"
+BIN1Pin = RPin(BIN1)
+BIN1Pin.function = "output"
+AIN1Pin = RPin(AIN1)
+AIN1Pin.function = "output"
+AIN2Pin = RPin(AIN2)
+AIN2Pin.function = "output"
+STBYPin = RPin(STBY)
+STBYPin.function = "output"
+PWMBPin = RPin(PWMB)
+PWMBPin.function = "output"
+PWMAPin = RPin(PWMA)
+PWMAPin.function = "output"
+STOPPin = RPin(STOP)
+STOPPin.function = "input"
 
 freq = 200
 PWMAPin.frequency = freq
@@ -40,9 +42,20 @@ def turnOnMotors():
     STBYPin.state = 1
 def turnOffMoters():
     STBYPin.state = 0
-if __name__ == "__main__":
-    print("running test")
 
+#speed between 1 and -1
+def setMotorA(speed):
+    if speed < 0:
+        AIN1Pin.state = 1
+        AIN2Pin.state = 0
+    else:
+        AIN1Pin.state = 0
+        AIN2Pin.state = 1
+    PWMAPin.state = Math.abs(speed)
+    pass
+
+def setMotorB(speed):
+    pass
 
 def close():
     VCCPin.close()
@@ -54,3 +67,9 @@ def close():
     STBYPin.close()
     PWMBPin.close()
     PWMAPin.close()
+    STOPPin.close()
+
+if __name__ == "__main__":
+    print("running test")
+    close()
+
