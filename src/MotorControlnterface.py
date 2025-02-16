@@ -11,7 +11,7 @@ AIN2 = 24
 STBY = 25
 PWMB = 12
 PWMA = 13
-STOP = -1 #set later
+STOP = 30 #set later
 
 VCCPin = RPin(VCC)
 VCCPin.function = "output"
