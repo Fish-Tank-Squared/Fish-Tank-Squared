@@ -13,7 +13,7 @@ AIN2 = 24
 STBY = 25
 PWMB = 12
 PWMA = 13
-STOP = 30 #set later
+#STOP = 30 #set later
 
 VCCPin = LED(VCC).pin
 VCCPin.function = "output"
@@ -33,8 +33,8 @@ PWMBPin = LED(PWMB).pin
 PWMBPin.function = "output"
 PWMAPin = LED(PWMA).pin
 PWMAPin.function = "output"
-STOPPin = LED(STOP).pin
-STOPPin.function = "input"
+#STOPPin = LED(STOP).pin
+#STOPPin.function = "input"
 
 freq = 200
 PWMAPin.frequency = freq
