@@ -1,6 +1,6 @@
 import gpiozero as gpio
 from gpiozero.pins.rpigpio import RPiGPIOPin as RPin
-import Math
+import math
 #pins
 VCC = 2
 GND = 6
@@ -51,11 +51,16 @@ def setMotorA(speed):
     else:
         AIN1Pin.state = 0
         AIN2Pin.state = 1
-    PWMAPin.state = Math.abs(speed)
-    pass
+    PWMAPin.state = math.abs(speed)
 
 def setMotorB(speed):
-    pass
+    if speed < 0:
+        BIN1Pin.state = 1
+        BIN2Pin.state = 0
+    else:
+        BIN1Pin.state = 0
+        BIN2Pin.state = 1
+    PWMBPin.state = math.abs(speed)
 
 def close():
     VCCPin.close()
