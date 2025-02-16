@@ -53,7 +53,7 @@ def setMotorA(speed):
     else:
         AIN1Pin.state = 0
         AIN2Pin.state = 1
-    PWMAPin.state = math.abs(speed)
+    PWMAPin.state = math.fabs(speed)
 
 def setMotorB(speed):
     if speed < 0:
@@ -62,7 +62,7 @@ def setMotorB(speed):
     else:
         BIN1Pin.state = 0
         BIN2Pin.state = 1
-    PWMBPin.state = math.abs(speed)
+    PWMBPin.state = math.fabs(speed)
 
 def close():
     VCCPin.close()
