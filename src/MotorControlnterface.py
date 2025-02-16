@@ -3,7 +3,6 @@ from gpiozero.pins.rpigpio import RPiGPIOFactory as RPin
 from gpiozero import LED
 import math
 
-factory = RPin()
 #pins
 VCC = 2
 GND = 6
