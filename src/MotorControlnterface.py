@@ -1,6 +1,9 @@
 import gpiozero as gpio
-from gpiozero.pins.rpigpio import RPiGPIOPin as RPin
+from gpiozero.pins.rpigpio import RPiGPIOFactory as RPin
+from gpiozero import LED
 import math
+
+factory = RPin()
 #pins
 VCC = 2
 GND = 6
@@ -13,25 +16,25 @@ PWMB = 12
 PWMA = 13
 STOP = 30 #set later
 
-VCCPin = RPin(VCC)
+VCCPin = LED(VCC).pin
 VCCPin.function = "output"
-GNDPin = RPin(GND)
+GNDPin = LED(GND).pin
 GNDPin.function = "output"
-BIN2Pin = RPin(BIN2)
+BIN2Pin = LED(BIN2).pin
 BIN2Pin.function = "output"
-BIN1Pin = RPin(BIN1)
+BIN1Pin = LED(BIN1).pin
 BIN1Pin.function = "output"
-AIN1Pin = RPin(AIN1)
+AIN1Pin = LED(AIN1).pin
 AIN1Pin.function = "output"
-AIN2Pin = RPin(AIN2)
+AIN2Pin = LED(AIN2).pin
 AIN2Pin.function = "output"
-STBYPin = RPin(STBY)
+STBYPin = LED(STBY).pin
 STBYPin.function = "output"
-PWMBPin = RPin(PWMB)
+PWMBPin = LED(PWMB).pin
 PWMBPin.function = "output"
-PWMAPin = RPin(PWMA)
+PWMAPin = LED(PWMA).pin
 PWMAPin.function = "output"
-STOPPin = RPin(STOP)
+STOPPin = LED(STOP).pin
 STOPPin.function = "input"
 
 freq = 200
